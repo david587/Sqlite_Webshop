@@ -16,18 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", "MainController@index");
 
-Route::get('product', "ProductController@index");
+Route::get('products', "ProductController@index");
 
 Route::get('products/create', [ProductController::class,"create"]);
 
-Route::post('products', [ProductController::class,"store"]);
+Route::post('/products', [ProductController::class,"store"])->name("products.store");
 
 Route::get('products/{product}', [ProductController::class,"show"]);
 
 Route::get('products/{product}/edit', [ProductController::class,"edit"]);
 
-Route::match(["put","patch"],'products/{product}', [ProductController::class,"update"]);
+Route::match(["put","patch"],'products/{product}', [ProductController::class,"update"])->name("products.update");
 
-Route::get('products/{product}', [ProductController::class,"destroy]"]);
+Route::delete('products/{product}', [ProductController::class,"destroy]"]);
 
 
