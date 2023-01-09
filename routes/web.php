@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", "MainController@index");
 
-Route::get('products', "ProductController@index");
+Route::get('products', "ProductController@index")->name("products.index");
 
 Route::get('products/create', [ProductController::class,"create"])->name("products.create");
 
@@ -28,6 +28,6 @@ Route::get('products/{product}/edit', [ProductController::class,"edit"])->name("
 
 Route::match(["put","patch"],'products/{product}', [ProductController::class,"update"])->name("products.update");
 
-Route::delete('products/{product}', [ProductController::class,"destroy]"]);
+Route::delete('products/{product}/delete', "ProductController@destroy")->name("products.destroy");
 
 

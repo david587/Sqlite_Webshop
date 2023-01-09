@@ -23,17 +23,8 @@ class ProductController extends Controller
 
     //post request
     public function store(){
-        // $product = Product::create([
-        //     "title" =>request()->title,
-        //     "description"=>request()->description,
-        //     "price"=>request()->price,
-        //     "stock"=>request()->stock,
-        //     "status"=>request()->status
-        // ]);
-        //igy nem kell egyesével megadni a mezöket
         $product = Product::create(request()->all());
-        //in json format we can see in the browser
-        return $product;
+        return redirect()->route("products.index");
     }
 
     public function show($productId){
@@ -55,10 +46,14 @@ class ProductController extends Controller
         //update request
         $product = Product::findOrFail($productId);
         $product->update(request()->all());
-        return $product;
+        return redirect()->route("products.index");
     }
     
-    public function destroy($product){
-        
+    public function destroy($productId){
+        $product = Product::findOrFail($productId);
+        //i remove from database , not from memory
+        $product->delete();
+        //in the memory this is still accessable, thats why we can return the deleted element
+        return redirect()->route("products.index");
     }
 }
