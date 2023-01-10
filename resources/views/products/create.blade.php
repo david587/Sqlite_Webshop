@@ -6,25 +6,34 @@
         @csrf
         <div class="form-row">-
             <label for="">title</label>
-            <input type="text" name="title" required class="form-control">
+            <input type="text" name="title"  class="form-control" required value="{{ old("title") }}">
         </div>
         <div class="form-row">
             <label for="">description</label>
-            <input type="text" name="description" required class="form-control">
+            <input type="text" name="description"  class="form-co requiredntrol" required value="{{ old("description") }}">
         </div>
         <div class="form-row">
             <label for="">Price</label>
-            <input type="text" name="price" required class="form-control" min="1.00" step="0.01">
+            <input type="text" name="price"  class="form-control"  value="{{ old("price") }}" min="1.00" step="0.01">
         </div>
         <div class="form-row">
             <label for="">Stock</label>
-            <input type="text" name="stock" required class="form-control" min="0">
+            <input type="text" name="stock"  class="form-control" required value="{{ old("stock") }}" min="0">
         </div>
         <div class="form-row">
             <label for="">Status</label>
            <select name="status" class="custom-select">
-            <option value="available" selected>available</option>
-            <option value="unavailable" selected>unavailable</option>
+            <option value="" selected>Select...</option>
+            <option value="available"
+            {{ old("status") == "available" ? "selected" : "" }}>
+            available
+        </option>
+
+            <option value="unavailable" 
+            {{ old("status") == "unavailable" ? "selected" : "" }}>
+            unavailable
+        </option>
+
            </select>
         </div>
         <div class="form-row">
