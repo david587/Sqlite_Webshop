@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,7 @@ Route::match(["put","patch"],'products/{product}', [ProductController::class,"up
 Route::delete('products/{product}/delete', "ProductController@destroy")->name("products.destroy");
 
 
+// new routes ->ui compoent routes
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

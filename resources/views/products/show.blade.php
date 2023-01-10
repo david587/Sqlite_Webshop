@@ -1,5 +1,5 @@
 {{-- master blade-be emelje be a yield mezőhöz --}}
-@extends("layouts.master")
+@extends("layouts.app")
 {{-- yield neve --}}
 @section('content')
     <h1>{{ $product->title }} ({{ $product->id }})</h1>
