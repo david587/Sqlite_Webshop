@@ -2,7 +2,7 @@
 @section("content")
 <h1>List of Products</h1>
 
-<a class="btn btn-succes" href="{{ route("products.create")}}">Create</a>
+<a class="btn btn-success mb-3" href="{{ route("products.create")}}">Create</a>
 
 {{-- ha ures a véltozo jelezze ezt --}}
 @empty($products)
@@ -36,7 +36,7 @@
                             <a class="btn btn-link" href="{{ route("products.edit",
                             ["product" => $product->id]) }}">Edit</a>
                             {{-- normally we sending get request with links ,we have to send delete request--}}
-                        <form method="POST" action="{{ route("products.destroy",
+                        <form class="d-inline" method="POST" action="{{ route("products.destroy",
                             ["product" => $product->id]) }}">
                         @csrf
                         @method('DELETE')

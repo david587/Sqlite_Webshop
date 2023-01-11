@@ -37,7 +37,7 @@
            </select>
         </div>
         <div class="form-row">
-          <button class="btn btn-primary btn-lg" type="submit">submit</button>
+          <button class="btn btn-primary btn-lg mt-3" type="submit">submit</button>
         </div>
     </form>
 @endsection

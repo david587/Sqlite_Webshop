@@ -27,7 +27,7 @@
             $product->stock }}"  class="form-control" min="0">
         </div>
         <div class="form-row">
-            <label for="">Status</label>
+            <label>Status</label>
            <select name="status" class="custom-select">
             <option value="available"  {{ old("status")== "available" ? "selected" : ($product->status == "available" ? "selected" : "" )}}> 
             available</option>
@@ -36,7 +36,7 @@
            </select>
         </div>
         <div class="form-row">
-          <button class="btn btn-primary btn-lg" type="submit">Update</button>
+          <button class="btn btn-primary btn-lg mt-3" type="submit">Update</button>
         </div>
     </form>
 @endsection

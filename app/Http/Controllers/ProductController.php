@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
 
     public function index()
     {
@@ -50,39 +54,29 @@ class ProductController extends Controller
         ->withSuccess("New product with id  {$product->id} was created");
     }
 
-    public function show($productId){
-        //if the passed id is ot exits return 404 not found page
-       $product = Product::findOrFail($productId);
+    public function show(Product $product)
+    {
         return view("products.show")->with([
-            "product"=>$product,
-            "subtitle"=>"<h2>Alma</h2>"
+            "product"=>$product
         ]);
     }
 
-    public function edit($product){
+    public function edit($product)
+    {
         return view("products.edit")->with([
             "product"=> Product::findOrFail($product)
         ]);
     }
     
-    public function update($productId){
-        $rules = [
-            "title"=> ["required", "max:255"],
-            "description"=> ["required","max:1000"],
-            "price"=>["required","min:1"],
-            "stock"=> ["required", "min:0"],
-            "status"=>["required", "in:available,unavailable"]
-        ];
-        request()->validate($rules);
-        //update request
-        $product = Product::findOrFail($productId);
+    public function update( Product $product)
+    {
         $product->update(request()->all());
         return redirect()->route("products.index")
         ->withSuccess("The product with id {$product->id} was updated");
     }
     
-    public function destroy($productId){
-        $product = Product::findOrFail($productId);
+    public function destroy(Product $product)
+    {
         //i remove from database , not from memory
         $product->delete();
         //in the memory this is still accessable, thats why we can return the deleted element
