@@ -17,7 +17,8 @@ class PaymentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "amount" =>$this->fake()->randomFloat($maxDecimal= 2 , $min = 15, $max =500),
+            "amount" =>$this->fake()->dateTimeBetween($startDate= "-1 year", $endDate= "now", $timezone =null),
         ];
     }
 }
