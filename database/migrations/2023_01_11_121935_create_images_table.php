@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string("path");
             $table->timestamps();
+            //anything what can have an image, in this case a produt or a user
+            //with morphs can do->creates a imageables_type and imageables_id
+            $table->morphs("imegeable");
         });
     }
 

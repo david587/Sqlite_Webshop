@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Order;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,4 +47,20 @@ class User extends Authenticatable
     protected $dates = [
         "admin_since"
     ];
+
+    //in this case the user has many order
+    public function orders()
+    {
+        return $this->hasMany(Order::class, "customer_id");
+    }
+
+    public function payments(){
+        // get the payment from the order
+        return $this->hasManyThrough(Payment::class, Order::class, "customer_id");
+    }
+
+    //the name of the poli relationship->imageable,userhez rendeljük igy
+    public function image(){
+        return $this->morphOne(Image::class, "imageable");
+    }
 }
